@@ -4,12 +4,19 @@
 
 package frc.robot.commands;
 
+import org.photonvision.PhotonCamera;
+import org.photonvision.targeting.PhotonPipelineResult;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class AutoIntake extends CommandBase {
+  PhotonCamera camera;
+
   /** Creates a new AutoIntake. */
   public AutoIntake() {
     // Use addRequirements() here to declare subsystem dependencies.
+    camera = new PhotonCamera("camera name");
+
   }
 
   // Called when the command is initially scheduled.
@@ -18,7 +25,12 @@ public class AutoIntake extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    PhotonPipelineResult result = camera.getLatestResult();
+    if (result.hasTargets()) {
+      
+    }
+  }
 
   // Called once the command ends or is interrupted.
   @Override
